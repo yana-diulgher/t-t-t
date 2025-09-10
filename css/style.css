@@ -58,6 +58,10 @@
   grid-gap: 0px; /* Отступы между ячейками */
 }
 
+
+
+
+
 .table-item{
   border: 1px solid #d11111;
   display: flex;
