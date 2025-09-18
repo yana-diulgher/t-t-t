@@ -12,14 +12,17 @@ buttons.forEach((button, index) => {
         button.textContent = currentPlayer;
         button.disabled = true;
         moves.push({ index: index, player: currentPlayer });
-
-        const winner = checkWinner();
+        
+        winner = checkWinner();
 
         if (winner) {
             winnerText.textContent = `Победил "${winner}"`;
             disableAllButtons();
         } else if (isDraw()) {
             winnerText.textContent = 'Ничья!';
+            for(i=0;i<9;i++){
+                buttons[i].style.backgroundColor = '#a0ccc2ff';
+            }  
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             if (currentPlayer === 'X') {
@@ -31,7 +34,7 @@ buttons.forEach((button, index) => {
             }
         }
     });
-});
+});  
 
 const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -63,6 +66,9 @@ function isDraw() {
 function disableAllButtons() {
     buttons.forEach(button => button.disabled = true);
 }
+function enableAllButtons() {
+    buttons.forEach(button => button.disabled = false);
+}
 
 function backMove() {
     if (moves.length === 0) return;
@@ -70,8 +76,14 @@ function backMove() {
     let lastMove = moves.pop();
     buttons[lastMove.index].textContent = '';
     buttons[lastMove.index].disabled = false;
-    currentPlayer = lastMove.player;
     winnerText.textContent = '';
+    currentPlayer = lastMove.player;
+    buttons.forEach(button => {
+        button.removeEventListener('click', disableAllButtons);
+        enableAllButtons();
+        for(i=0;i<9;i++){
+            buttons[i].style.backgroundColor = '#f0f0f0';}
+    });
 }
 
 const backBtn = document.getElementById('back');
