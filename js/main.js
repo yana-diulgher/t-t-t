@@ -79,7 +79,14 @@ function backMove() {
     winnerText.textContent = '';
     currentPlayer = lastMove.player;
     buttons.forEach(button => {
-        button.removeEventListener('click', disableAllButtons);
+         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            if (currentPlayer === 'X') {
+                p1.style.color = 'black';
+                p2.style.color = 'gray';
+            } else {
+                p2.style.color = 'black';
+                p1.style.color = 'gray';
+            }
         enableAllButtons();
         for(i=0;i<9;i++){
             buttons[i].style.backgroundColor = '#f0f0f0';}
