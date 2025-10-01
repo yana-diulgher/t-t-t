@@ -1,0 +1,114 @@
+.parts{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #f6e9f5;
+    gap: 1px;
+}
+
+.pass{
+  margin-left: 50%;
+  margin-top: 25%;
+  margin-right: 50%;
+  color: gray;
+}
+
+.box{
+ display: flex;
+ justify-content:center ;
+ margin: 5%;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 столбца одинаковой ширины */
+  grid-gap: 0.4pt; /* Отступы между ячейками */
+}
+
+.grid-item {
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.btn{
+ background-color: #f0f0f0;
+ border-width: 1px;
+  padding: 50px;
+  max-width: 100px;
+  min-width: 50px;
+  max-height: 100px;
+  min-height: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:disabled {
+    background-color: #f0f0f0; /* тот же, что и у обычной */
+    color: black; /* или другой, какой хочешь */
+    opacity: 1;   /* отменяет полупрозрачность */
+}
+.btn:hover{
+  background-color: #e0b4c5;
+}
+
+.table-container{
+  margin: 25%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 столбца одинаковой ширины */
+  grid-gap: 0px; /* Отступы между ячейками */
+}
+
+
+
+
+
+.table-item{
+  border: 1px solid #d11111;
+  display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.controls {
+  display: grid;
+  justify-content: center; /* выравнивание по центру */
+  margin-top: 10px;        /* отступ сверху */
+}
+
+
+#back {
+  padding: 10px 20px; 
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #20b281;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#back:hover {
+  background-color: #2a779e;
+}
+
+#reset {
+  padding: 10px 20px;
+   margin-top: 10px;  
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #b22073;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#reset:hover {
+  background-color: #8b2e6f;
+}
+
+
+.winner-text{
+font-size: 30px;
+color: #821212;
+}
