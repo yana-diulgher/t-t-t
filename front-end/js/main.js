@@ -5,6 +5,38 @@ const p1 = document.querySelector('.text-for-X');
 const p2 = document.querySelector('.text-for-O');
 const winnerText = document.querySelector('.winner-text');
 
+function Api_send(uri,data) {
+  // Данные, которые вы хотите отправить
+  const dataToSend = { data };
+
+  // URL API, куда будут отправлены данные
+  const apiUrl = 'http://localhost:4000/'+ uri; // обязательно с http://
+
+  // Настройки запроса
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dataToSend)
+  };
+
+  // Отправка запроса с помощью fetch()
+  fetch(apiUrl, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Ошибка при отправке данных: ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(result => {
+      console.log('Ответ сервера:', result);
+    })
+    .catch(error => {
+      console.error('Произошла ошибка:', error);
+    });
+}
+
 buttons.forEach((button, index) => {
     button.addEventListener('click', () => {
         if (button.textContent) return; 
@@ -16,9 +48,12 @@ buttons.forEach((button, index) => {
         winner = checkWinner();
 
         if (winner) {
+            Api_send('win',winner);
             winnerText.textContent = `Победил "${winner}"`;
+            
             disableAllButtons();
         } else if (isDraw()) {
+            Api_send('draw');
             winnerText.textContent = 'Ничья!';
             for(i=0;i<9;i++){
                 buttons[i].style.backgroundColor = '#a0ccc2ff';
@@ -26,9 +61,12 @@ buttons.forEach((button, index) => {
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             if (currentPlayer === 'X') {
+                Api_send('move','X');
+
                 p1.style.color = 'black';
                 p2.style.color = 'gray';
             } else {
+                Api_send('move','O');
                 p2.style.color = 'black';
                 p1.style.color = 'gray';
             }
@@ -60,6 +98,7 @@ function checkWinner() {
 }
 
 function isDraw() {
+    
     return [...buttons].every(button => button.textContent);
 }
 
